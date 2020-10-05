@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">PostBoard</string>
+    <string name="welcome_message">Welcome to \nPost Board.</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="enter">Enter</string>
+    <string name="password_hint">Enter Password</string>
+    <string name="email_hint">example.person@email.com</string>
+    <string name="sign_in_prompt">Sign-in\nInfo</string>
 </resources>
