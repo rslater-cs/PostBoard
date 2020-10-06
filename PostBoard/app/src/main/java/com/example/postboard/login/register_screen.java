@@ -1,4 +1,4 @@
-package com.example.postboard;
+package com.example.postboard.login;
 
 import android.os.Bundle;
 
@@ -12,19 +12,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link login_screen#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class login_screen extends Fragment {
+import com.example.postboard.R;
+
+public class register_screen extends Fragment {
     NavController navController;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login_screen, container, false);
+        return inflater.inflate(R.layout.fragment_register_screen, container, false);
     }
 
     @Override
@@ -33,10 +30,10 @@ public class login_screen extends Fragment {
 
         navController = Navigation.findNavController(view);
 
-        view.findViewById(R.id.login_enter).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.regsiter_enter).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navController.navigate(R.id.action_login_screen_to_summary_screen);
+                navController.navigate(R.id.action_register_screen_to_summary_screen);
             }
         });
     }

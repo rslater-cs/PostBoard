@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/login_screen"
-        android:name="com.example.postboard.login_screen"
+        android:name="com.example.postboard.login.login_screen"
         android:label="fragment_login_screen"
         tools:layout="@layout/fragment_login_screen" >
         <action
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/register_screen"
-        android:name="com.example.postboard.register_screen"
+        android:name="com.example.postboard.login.register_screen"
         android:label="fragment_register_screen"
         tools:layout="@layout/fragment_register_screen" >
         <action
@@ -47,8 +47,8 @@
             app:destination="@id/summary_screen"
             app:enterAnim="@anim/right_in"
             app:exitAnim="@anim/right_out"
-            app:popEnterAnim="@anim/right_out"
-            app:popExitAnim="@anim/right_in" />
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/left_out" />
     </fragment>
     <fragment
         android:id="@+id/summary_screen"
