@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.postboard.mainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_login_screen"
+            app:destination="@id/login_screen"
+            app:enterAnim="@anim/up_in"
+            app:exitAnim="@anim/up_out"
+            app:popEnterAnim="@anim/down_in"
+            app:popExitAnim="@anim/down_out" />
+        <action
+            android:id="@+id/action_mainFragment_to_register_screen"
+            app:destination="@id/register_screen"
+            app:enterAnim="@anim/up_in"
+            app:exitAnim="@anim/up_out"
+            app:popEnterAnim="@anim/down_in"
+            app:popExitAnim="@anim/down_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/login_screen"
+        android:name="com.example.postboard.login_screen"
+        android:label="fragment_login_screen"
+        tools:layout="@layout/fragment_login_screen" >
+        <action
+            android:id="@+id/action_login_screen_to_summary_screen"
+            app:destination="@id/summary_screen"
+            app:enterAnim="@anim/right_in"
+            app:exitAnim="@anim/right_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/left_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/register_screen"
+        android:name="com.example.postboard.register_screen"
+        android:label="fragment_register_screen"
+        tools:layout="@layout/fragment_register_screen" >
+        <action
+            android:id="@+id/action_register_screen_to_summary_screen"
+            app:destination="@id/summary_screen"
+            app:enterAnim="@anim/right_in"
+            app:exitAnim="@anim/right_out"
+            app:popEnterAnim="@anim/right_out"
+            app:popExitAnim="@anim/right_in" />
+    </fragment>
+    <fragment
+        android:id="@+id/summary_screen"
+        android:name="com.example.postboard.summary_screen"
+        android:label="fragment_summary_screen"
+        tools:layout="@layout/fragment_summary_screen" />
+</navigation>

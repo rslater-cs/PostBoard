@@ -3,8 +3,13 @@
     <string name="welcome_message">Welcome to \nPost Board.</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
-    <string name="enter">Enter</string>
     <string name="password_hint">Enter Password</string>
     <string name="email_hint">example.person@email.com</string>
     <string name="sign_in_prompt">Sign-in\nInfo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="register_email">Enter\nDetails</string>
+    <string name="enter">Enter</string>
+    <string name="register_password_2">Re-Enter Password</string>
+    <string name="register_password">Enter Password</string>
 </resources>
