@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/register_screen"
-        android:name="com.example.postboard.login.register_screen"
+        android:name="com.example.postboard.login.register.register_screen"
         android:label="fragment_register_screen"
         tools:layout="@layout/fragment_register_screen" >
         <action

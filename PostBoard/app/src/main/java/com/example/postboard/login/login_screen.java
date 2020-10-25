@@ -14,11 +14,12 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.example.postboard.R;
-import com.example.postboard.boarddata.Database;
-import com.example.postboard.boarddata.PasswordSecurity;
+import com.example.postboard.boarddata.API;
+import com.example.postboard.errorhandler.ToastMaker;
 
 public class login_screen extends Fragment {
     NavController navController;
+    ToastMaker toastMaker = new ToastMaker(getContext());
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,26 +39,16 @@ public class login_screen extends Fragment {
         view.findViewById(R.id.login_enter).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view2) {
-                int logkey = attemptSignIn(mainView);
-                if(logkey != -1) navController.navigate(R.id.action_login_screen_to_summary_screen);
+                EditText email = mainView.findViewById(R.id.email_field);
+                EditText password = mainView.findViewById(R.id.password_field);
+
+                LoginDetail loginDetails = new LoginDetail(email, password);
+
+                if(!loginDetails.verifyEmail()) toastMaker.newToast("Err: email must not be empty");
+                if(!loginDetails.verifyPassword()) toastMaker.newToast("Err: password must be longer than 8 letters");
+
+                API.log_in(loginDetails, getContext(), navController);
             }
         });
-    }
-
-
-
-    private int attemptSignIn(View view){
-        EditText emailField = view.findViewById(R.id.email_field);
-        EditText passwordField = view.findViewById(R.id.password_field);
-
-        String email = emailField.getText().toString();
-        String password = passwordField.getText().toString();
-
-        if(email.length() == 0 || password.length() == 0) return -1;
-
-        password = PasswordSecurity.hash(password);
-        Database database = new Database(getContext());
-
-        return database.signin(email, password);
     }
 }
