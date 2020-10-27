@@ -9,6 +9,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.postboard.R;
@@ -33,7 +34,20 @@ public class API {
                     @Override
                     public void onResponse(String response) {
                         toastMaker.newToast(response);
-                        navController.navigate(R.id.action_register_screen_to_summary_screen);
+                        int pk = -1;
+                        String error = "Err: the server did not respond";
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            pk = jsonObject.getInt("key");
+                            error = jsonObject.getString("message");
+                        }catch(Exception e){
+                            toastMaker.newToast(e.getMessage());
+                        }
+                        if(pk == -1){
+                            toastMaker.newToast(error);
+                            return;
+                        }
+                        navController.navigate(R.id.action_login_screen_to_summary_screen);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -61,11 +75,25 @@ public class API {
         final ToastMaker toastMaker = new ToastMaker(context);
         RequestQueue queue = Volley.newRequestQueue(context);
 
-        StringRequest request = new StringRequest(Request.Method.POST, URL+"register.php",
-                new Response.Listener<String>() {
+        JsonObjectRequest request = new JsonObjectRequest(URL+"register.php", null,
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(String response) {
-                        toastMaker.newToast(response);
+                    public void onResponse(JSONObject response) {
+                        toastMaker.newToast(response.toString());
+                        int pk = -1;
+                        String error = "Err: the server did not respond";
+                        //response = response.substring(2, response.length()-1);
+                        System.out.println(response);
+                        try {
+                            pk = response.getInt("key");
+                            error = response.getString("message");
+                        }catch(Exception e){
+                            toastMaker.newToast(e.getMessage());
+                        }
+                        if(pk == -1){
+                            toastMaker.newToast(error);
+                            return;
+                        }
                         navController.navigate(R.id.action_register_screen_to_summary_screen);
                     }
                 }, new Response.ErrorListener() {
@@ -75,7 +103,7 @@ public class API {
             }
         }){
             @Override
-            public byte[] getBody() throws AuthFailureError {
+            public byte[] getBody() {
                 return registerDetails.bundle();
             }
 

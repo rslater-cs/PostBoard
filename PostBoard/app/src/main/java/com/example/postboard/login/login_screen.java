@@ -19,7 +19,7 @@ import com.example.postboard.errorhandler.ToastMaker;
 
 public class login_screen extends Fragment {
     NavController navController;
-    ToastMaker toastMaker = new ToastMaker(getContext());
+    ToastMaker toastMaker;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,6 +31,7 @@ public class login_screen extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        toastMaker = new ToastMaker(getContext());
 
         navController = Navigation.findNavController(view);
 

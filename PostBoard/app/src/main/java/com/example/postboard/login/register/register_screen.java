@@ -30,7 +30,7 @@ import java.util.Map;
 
 public class register_screen extends Fragment {
     NavController navController;
-    ToastMaker toastMaker = new ToastMaker(getContext());
+    ToastMaker toastMaker;
     View superView = null;
 
     @Override
@@ -43,6 +43,8 @@ public class register_screen extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        toastMaker = new ToastMaker(getContext());
 
         navController = Navigation.findNavController(view);
         this.superView = view;
