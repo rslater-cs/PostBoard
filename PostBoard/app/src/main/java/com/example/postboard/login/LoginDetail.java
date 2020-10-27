@@ -30,7 +30,7 @@ public class LoginDetail {
         return email;
     }
 
-    public byte[] bundle() {
+    public JSONObject bundle() {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("username", email);
@@ -39,6 +39,8 @@ public class LoginDetail {
             System.out.println(e.getMessage());
         }
 
-        return jsonObject.toString().getBytes();
+        System.out.println(jsonObject.toString());
+
+        return jsonObject;
     }
 }

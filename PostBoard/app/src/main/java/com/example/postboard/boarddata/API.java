@@ -29,17 +29,16 @@ public class API {
         final ToastMaker toastMaker = new ToastMaker(context);
         RequestQueue queue = Volley.newRequestQueue(context);
 
-        StringRequest request = new StringRequest(Request.Method.POST, URL+"log_in.php",
-                new Response.Listener<String>() {
+        JsonObjectRequest request = new JsonObjectRequest(URL+"log_in.php", loginDetails.bundle(),
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(String response) {
-                        toastMaker.newToast(response);
+                    public void onResponse(JSONObject response) {
+                        toastMaker.newToast(response.toString());
                         int pk = -1;
                         String error = "Err: the server did not respond";
                         try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            pk = jsonObject.getInt("key");
-                            error = jsonObject.getString("message");
+                            pk = response.getInt("key");
+                            error = response.getString("message");
                         }catch(Exception e){
                             toastMaker.newToast(e.getMessage());
                         }
@@ -55,10 +54,10 @@ public class API {
                 toastMaker.newToast(error.getMessage());
             }
         }){
-            @Override
-            public byte[] getBody() throws AuthFailureError {
+            /*@Override
+            public byte[] getBody() {
                 return loginDetails.bundle();
-            }
+            }*/
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
@@ -75,7 +74,7 @@ public class API {
         final ToastMaker toastMaker = new ToastMaker(context);
         RequestQueue queue = Volley.newRequestQueue(context);
 
-        JsonObjectRequest request = new JsonObjectRequest(URL+"register.php", null,
+        JsonObjectRequest request = new JsonObjectRequest(URL+"register.php", registerDetails.bundle(),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -102,10 +101,10 @@ public class API {
                 toastMaker.newToast(error.getMessage());
             }
         }){
-            @Override
+            /*@Override
             public byte[] getBody() {
                 return registerDetails.bundle();
-            }
+            }*/
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {

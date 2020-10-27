@@ -66,36 +66,4 @@ public class register_screen extends Fragment {
             }
         });
     }
-
-    private void POSTRequest(final RegisterDetail registerDetails){
-        RequestQueue queue = Volley.newRequestQueue(getContext());
-
-        StringRequest request = new StringRequest(Request.Method.POST, API.URL+"register.php",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        toastMaker.newToast(response);
-                        navController.navigate(R.id.action_register_screen_to_summary_screen);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                toastMaker.newToast(error.getMessage());
-            }
-        }){
-            @Override
-            public byte[] getBody() throws AuthFailureError {
-                return registerDetails.bundle();
-            }
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<>();
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-        };
-
-        queue.add(request);
-    }
 }
